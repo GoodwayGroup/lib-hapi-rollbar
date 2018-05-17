@@ -13,8 +13,8 @@
     "type": "git",
     "url": "git+https://github.com/GoodwayGroup/lib-hapi-rollbar.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "https://www.npmjs.com/~clok",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/GoodwayGroup/lib-hapi-rollbar/issues"
   },
