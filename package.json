@@ -1,6 +1,6 @@
 {
   "name": "@goodwaygroup/lib-hapi-rollbar",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Hapi v17 plugin for Rollbar notifications",
   "main": "index.js",
   "scripts": {
