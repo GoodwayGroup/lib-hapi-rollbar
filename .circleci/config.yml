@@ -1,0 +1,52 @@
+version: 2
+
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    -
+      image: goodwaygroup/circleci-build-images:node-8
+      auth:
+        username: $DOCKER_USER
+        password: $DOCKER_PASS
+
+jobs:
+  test:
+    <<: *defaults
+    steps:
+      - checkout
+      - setup_remote_docker
+
+      # Download and cache dependencies
+      -
+        restore_cache:
+          keys:
+            - v0-dependencies-{{ checksum "yarn.lock" }}
+
+      -
+        run:
+          name: Dependency Install
+          command: yarn install
+
+      -
+        save_cache:
+          paths:
+            - node_modules
+          key: v0-dependencies-{{ checksum "yarn.lock" }}
+
+      # Run Tests!
+      - run: npm test
+
+      # Upload coverage
+      # - run:
+      #     name: Upload Code Coverage
+      #     command: bash <(curl -s https://codecov.io/bash) -t 6863ae82-2b75-4040-aaae-d1be9a19389d
+
+workflows:
+  version: 2
+  build_workflow:
+    jobs:
+      -
+        test:
+          filters:
+            tags:
+              only: /.*/
