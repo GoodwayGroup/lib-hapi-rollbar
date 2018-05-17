@@ -4,7 +4,11 @@
 
 ## Usage
 
-This plugin will push exceptions to Rollbar
+This plugin will push exceptions to Rollbar.
+
+```
+$ yarn add @goodwaygroup/lib-hapi-rollbar
+```
 
 In your `index.js` for the Hapi server, register the plugin:
 
