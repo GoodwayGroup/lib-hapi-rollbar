@@ -19,6 +19,18 @@
     "url": "https://github.com/GoodwayGroup/lib-hapi-rollbar/issues"
   },
   "homepage": "https://github.com/GoodwayGroup/lib-hapi-rollbar#readme",
+  "keywords": [
+    "error",
+    "exceptions",
+    "instrumentation",
+    "log",
+    "logging",
+    "monitor",
+    "monitoring",
+    "plugin",
+    "rollbar",
+    "stats"
+  ],
   "pre-push": [
     "lint",
     "test"
