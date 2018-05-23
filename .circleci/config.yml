@@ -4,17 +4,13 @@ defaults: &defaults
   working_directory: ~/repo
   docker:
     -
-      image: goodwaygroup/circleci-build-images:node-8
-      auth:
-        username: $DOCKER_USER
-        password: $DOCKER_PASS
+      image: circleci/node:8
 
 jobs:
   test:
     <<: *defaults
     steps:
       - checkout
-      - setup_remote_docker
 
       # Download and cache dependencies
       -
@@ -35,11 +31,6 @@ jobs:
 
       # Run Tests!
       - run: npm test
-
-      # Upload coverage
-      # - run:
-      #     name: Upload Code Coverage
-      #     command: bash <(curl -s https://codecov.io/bash) -t 6863ae82-2b75-4040-aaae-d1be9a19389d
 
 workflows:
   version: 2
