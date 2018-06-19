@@ -32,7 +32,7 @@ describe('lib-hapi-rollbar plugin tests', () => {
             server.route({ method: 'GET',
                 path: '/sendCustomMessage',
                 handler: async (request) => {
-                    await request.sendRollbarMessage({ level: 'info', request, message: 'test message' });
+                    await request.sendRollbarMessage({ level: 'info', message: 'test message' });
 
                     return true;
                 } });
@@ -40,7 +40,7 @@ describe('lib-hapi-rollbar plugin tests', () => {
             server.route({ method: 'GET',
                 path: '/sendErrorMessage',
                 handler: async (request) => {
-                    await request.sendRollbarMessage({ request, message: 'test error message' });
+                    await request.sendRollbarMessage({ message: 'test error message' });
 
                     return true;
                 } });
@@ -48,7 +48,7 @@ describe('lib-hapi-rollbar plugin tests', () => {
             server.route({ method: 'GET',
                 path: '/sendInvalidMessage',
                 handler: async (request) => {
-                    await request.sendRollbarMessage({ level: 'bad', request, message: 'test bad message' });
+                    await request.sendRollbarMessage({ level: 'bad', message: 'test bad message' });
 
                     return true;
                 } });
@@ -87,12 +87,18 @@ describe('lib-hapi-rollbar plugin tests', () => {
             await server.inject('/sendCustomMessage');
             expect(mockRollbarClient.error).not.toHaveBeenCalled();
             expect(mockRollbarClient.info).toHaveBeenCalled();
+            // Check that the `this` is a request object
+            const args = mockRollbarClient.info.calls.argsFor(0);
+            expect(args[1].path).toBe('/sendCustomMessage');
         });
 
         it('should add a message helper method to the server [default case]', async () => {
             await server.inject('/sendErrorMessage');
             expect(mockRollbarClient.error).toHaveBeenCalled();
             expect(mockRollbarClient.info).not.toHaveBeenCalled();
+            // Check that the `this` is a request object
+            const args = mockRollbarClient.error.calls.argsFor(0);
+            expect(args[1].path).toBe('/sendErrorMessage');
         });
 
         it('should add a message helper method to the server [error case]', async () => {
