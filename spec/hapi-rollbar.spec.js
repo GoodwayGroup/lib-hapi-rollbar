@@ -1,5 +1,6 @@
 const assert = require('assert');
 const plugin = require('../lib');
+const nock = require('nock');
 const Hapi = require('hapi');
 const Boom = require('boom');
 
@@ -182,10 +183,70 @@ describe('lib-hapi-rollbar plugin tests', () => {
             await server.inject('/boom');
             expect(mockRollbarClient.error).toHaveBeenCalled();
         });
+    });
+
+    describe('validate client creation', () => {
+        let server;
+        let mockRollbarClient;
+
+        beforeEach(async () => {
+            mockRollbarClient = {
+                error: jasmine.createSpy('error')
+            };
+
+            server = new Hapi.Server({
+                host: 'localhost',
+                port: 8085
+            });
+
+            return await server.register({ plugin });
+        });
+
+        it('should expose dogstatsd client to the hapi server', () => {
+            assert.notEqual(server.dogstatsd, mockRollbarClient);
+        });
+    });
+
+    fdescribe('real tests', () => {
+        let server;
+
+        beforeAll(() => {
+            nock.disableNetConnect();
+        });
+
+        afterAll(() => {
+            nock.enableNetConnect();
+        });
+
+
+        beforeEach(async () => {
+            server = new Hapi.Server({
+                host: 'localhost',
+                port: 8085
+            });
+
+            server.route({ method: 'GET',
+                path: '/realFailure',
+                handler: async (request) => {
+                    const a = await request.sendRollbarMessage({ message: 'gonna get nocked' });
+                    console.log(a)
+                    return true;
+                } });
+
+            return await server.register({
+                plugin,
+                options: {}
+            });
+        });
 
         it('should report when there is an error [Error]', async () => {
-            await server.inject('/throwError');
-            expect(mockRollbarClient.error).toHaveBeenCalled();
+            nock('https://api.rollbar.com'), {
+      reqheaders: {
+        'x-rollbar-access-token': '1234'
+      }
+    }.post('/api/1/item/').reply(200. 'uuid')
+
+            await server.inject('/realFailure');
         });
     });
 });
