@@ -10,7 +10,8 @@ describe('lib-hapi-rollbar plugin tests', () => {
 
         beforeEach(async () => {
             mockRollbarClient = {
-                error: jasmine.createSpy('error')
+                error: jasmine.createSpy('error'),
+                info: jasmine.createSpy('info')
             };
 
             server = new Hapi.Server({
@@ -27,6 +28,30 @@ describe('lib-hapi-rollbar plugin tests', () => {
             server.route({ method: 'GET', path: '/throwError', handler: retErr });
             server.route({ method: 'GET', path: '/boom', handler: retBoom });
             server.route({ method: 'GET', path: '/boomSkip', handler: retBoomSkip });
+
+            server.route({ method: 'GET',
+                path: '/sendCustomMessage',
+                handler: async (request) => {
+                    await request.sendRollbarMessage({ level: 'info', request, message: 'test message' });
+
+                    return true;
+                } });
+
+            server.route({ method: 'GET',
+                path: '/sendErrorMessage',
+                handler: async (request) => {
+                    await request.sendRollbarMessage({ request, message: 'test error message' });
+
+                    return true;
+                } });
+
+            server.route({ method: 'GET',
+                path: '/sendInvalidMessage',
+                handler: async (request) => {
+                    await request.sendRollbarMessage({ level: 'bad', request, message: 'test bad message' });
+
+                    return true;
+                } });
 
             return await server.register({
                 plugin,
@@ -56,6 +81,24 @@ describe('lib-hapi-rollbar plugin tests', () => {
         it('should report when there is an error [Error]', async () => {
             await server.inject('/throwError');
             expect(mockRollbarClient.error).toHaveBeenCalled();
+        });
+
+        it('should add a message helper method to the server [info level]', async () => {
+            await server.inject('/sendCustomMessage');
+            expect(mockRollbarClient.error).not.toHaveBeenCalled();
+            expect(mockRollbarClient.info).toHaveBeenCalled();
+        });
+
+        it('should add a message helper method to the server [default case]', async () => {
+            await server.inject('/sendErrorMessage');
+            expect(mockRollbarClient.error).toHaveBeenCalled();
+            expect(mockRollbarClient.info).not.toHaveBeenCalled();
+        });
+
+        it('should add a message helper method to the server [error case]', async () => {
+            await server.inject('/sendInvalidMessage');
+            expect(mockRollbarClient.error).not.toHaveBeenCalled();
+            expect(mockRollbarClient.info).not.toHaveBeenCalled();
         });
     });
 
