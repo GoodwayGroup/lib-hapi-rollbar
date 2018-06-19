@@ -207,7 +207,7 @@ describe('lib-hapi-rollbar plugin tests', () => {
         });
     });
 
-    fdescribe('real tests', () => {
+    describe('Rollbar callbacks', () => {
         let server;
 
         beforeAll(() => {
@@ -225,13 +225,11 @@ describe('lib-hapi-rollbar plugin tests', () => {
                 port: 8085
             });
 
+            server.route({ method: 'GET', path: '/boom', handler: () => Boom.badRequest('bad') });
+
             server.route({ method: 'GET',
                 path: '/realFailure',
-                handler: async (request) => {
-                    const a = await request.sendRollbarMessage({ message: 'gonna get nocked' });
-                    console.log(a)
-                    return true;
-                } });
+                handler: async request => await request.sendRollbarMessage({ message: 'gonna get nocked' }) });
 
             return await server.register({
                 plugin,
@@ -239,14 +237,28 @@ describe('lib-hapi-rollbar plugin tests', () => {
             });
         });
 
-        it('should report when there is an error [Error]', async () => {
-            nock('https://api.rollbar.com'), {
-      reqheaders: {
-        'x-rollbar-access-token': '1234'
-      }
-    }.post('/api/1/item/').reply(200. 'uuid')
+        describe('#sendRollbarMessage', () => {
+            // NOTE: This is a sideeffect test. By having the lifecycle complete without
+            // error we are validating that the request.log method is functioning correctly
+            it('should return cleanly and log an error when there is an issue reporting to Rollbar', async () => {
+                // This will cause a failure due to the header not being set
+                nock('https://api.rollbar.com').post('/api/1/item/');
 
-            await server.inject('/realFailure');
+                const response = await server.inject('/realFailure');
+                expect(response.statusCode).toBe(200);
+            });
+        });
+
+        describe('#onPreResponse', () => {
+            // NOTE: This is a sideeffect test. By having the lifecycle complete without
+            // error we are validating that the request.log method is functioning correctly
+            it('should return cleanly and log an error when there is an issue reporting to Rollbar', async () => {
+                // This will cause a failure due to the header not being set
+                nock('https://api.rollbar.com').post('/api/1/item/');
+
+                const response = await server.inject('/boom');
+                expect(response.statusCode).toBe(400);
+            });
         });
     });
 });
