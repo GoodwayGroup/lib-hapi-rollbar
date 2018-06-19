@@ -46,6 +46,27 @@ Custom options:
 
 The plugin uses the standard [Person Tracking](https://docs.rollbar.com/docs/person-tracking) features. To ensure you are passing the correct info to Rollbar, place the data you want to track in the `request.auth.credentials` object. This will be copied to `request.rollbar_person` when pushing the exception to Rollbar.
 
+### Send Custom Message
+
+You can send custom messages to Rollbar via the `request.sendRollbarMessage` decorator. It will default to the `error` level. You use any Rollbar supported level:
+
+```
+debug
+info
+warning
+error
+critical
+```
+
+Example call:
+
+```js
+request.sendRollbarMessage({
+    level: 'warning', // defaults to 'error'
+    message: 'Custom Message'
+})
+```
+
 ## Running Tests
 
 To run tests, just run the following:

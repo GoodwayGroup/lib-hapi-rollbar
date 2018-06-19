@@ -1,5 +1,6 @@
 const assert = require('assert');
 const plugin = require('../lib');
+const nock = require('nock');
 const Hapi = require('hapi');
 const Boom = require('boom');
 
@@ -10,7 +11,8 @@ describe('lib-hapi-rollbar plugin tests', () => {
 
         beforeEach(async () => {
             mockRollbarClient = {
-                error: jasmine.createSpy('error')
+                error: jasmine.createSpy('error'),
+                info: jasmine.createSpy('info')
             };
 
             server = new Hapi.Server({
@@ -27,6 +29,30 @@ describe('lib-hapi-rollbar plugin tests', () => {
             server.route({ method: 'GET', path: '/throwError', handler: retErr });
             server.route({ method: 'GET', path: '/boom', handler: retBoom });
             server.route({ method: 'GET', path: '/boomSkip', handler: retBoomSkip });
+
+            server.route({ method: 'GET',
+                path: '/sendCustomMessage',
+                handler: async (request) => {
+                    await request.sendRollbarMessage({ level: 'info', message: 'test message' });
+
+                    return true;
+                } });
+
+            server.route({ method: 'GET',
+                path: '/sendErrorMessage',
+                handler: async (request) => {
+                    await request.sendRollbarMessage({ message: 'test error message' });
+
+                    return true;
+                } });
+
+            server.route({ method: 'GET',
+                path: '/sendInvalidMessage',
+                handler: async (request) => {
+                    await request.sendRollbarMessage({ level: 'bad', message: 'test bad message' });
+
+                    return true;
+                } });
 
             return await server.register({
                 plugin,
@@ -56,6 +82,30 @@ describe('lib-hapi-rollbar plugin tests', () => {
         it('should report when there is an error [Error]', async () => {
             await server.inject('/throwError');
             expect(mockRollbarClient.error).toHaveBeenCalled();
+        });
+
+        it('should add a message helper method to the server [info level]', async () => {
+            await server.inject('/sendCustomMessage');
+            expect(mockRollbarClient.error).not.toHaveBeenCalled();
+            expect(mockRollbarClient.info).toHaveBeenCalled();
+            // Check that the `this` is a request object
+            const args = mockRollbarClient.info.calls.argsFor(0);
+            expect(args[1].path).toBe('/sendCustomMessage');
+        });
+
+        it('should add a message helper method to the server [default case]', async () => {
+            await server.inject('/sendErrorMessage');
+            expect(mockRollbarClient.error).toHaveBeenCalled();
+            expect(mockRollbarClient.info).not.toHaveBeenCalled();
+            // Check that the `this` is a request object
+            const args = mockRollbarClient.error.calls.argsFor(0);
+            expect(args[1].path).toBe('/sendErrorMessage');
+        });
+
+        it('should add a message helper method to the server [error case]', async () => {
+            await server.inject('/sendInvalidMessage');
+            expect(mockRollbarClient.error).not.toHaveBeenCalled();
+            expect(mockRollbarClient.info).not.toHaveBeenCalled();
         });
     });
 
@@ -133,10 +183,82 @@ describe('lib-hapi-rollbar plugin tests', () => {
             await server.inject('/boom');
             expect(mockRollbarClient.error).toHaveBeenCalled();
         });
+    });
 
-        it('should report when there is an error [Error]', async () => {
-            await server.inject('/throwError');
-            expect(mockRollbarClient.error).toHaveBeenCalled();
+    describe('validate client creation', () => {
+        let server;
+        let mockRollbarClient;
+
+        beforeEach(async () => {
+            mockRollbarClient = {
+                error: jasmine.createSpy('error')
+            };
+
+            server = new Hapi.Server({
+                host: 'localhost',
+                port: 8085
+            });
+
+            return await server.register({ plugin });
+        });
+
+        it('should expose dogstatsd client to the hapi server', () => {
+            assert.notEqual(server.dogstatsd, mockRollbarClient);
+        });
+    });
+
+    describe('Rollbar callbacks', () => {
+        let server;
+
+        beforeAll(() => {
+            nock.disableNetConnect();
+        });
+
+        afterAll(() => {
+            nock.enableNetConnect();
+        });
+
+
+        beforeEach(async () => {
+            server = new Hapi.Server({
+                host: 'localhost',
+                port: 8085
+            });
+
+            server.route({ method: 'GET', path: '/boom', handler: () => Boom.badRequest('bad') });
+
+            server.route({ method: 'GET',
+                path: '/realFailure',
+                handler: async request => await request.sendRollbarMessage({ message: 'gonna get nocked' }) });
+
+            return await server.register({
+                plugin,
+                options: {}
+            });
+        });
+
+        describe('#sendRollbarMessage', () => {
+            // NOTE: This is a sideeffect test. By having the lifecycle complete without
+            // error we are validating that the request.log method is functioning correctly
+            it('should return cleanly and log an error when there is an issue reporting to Rollbar', async () => {
+                // This will cause a failure due to the header not being set
+                nock('https://api.rollbar.com').post('/api/1/item/');
+
+                const response = await server.inject('/realFailure');
+                expect(response.statusCode).toBe(200);
+            });
+        });
+
+        describe('#onPreResponse', () => {
+            // NOTE: This is a sideeffect test. By having the lifecycle complete without
+            // error we are validating that the request.log method is functioning correctly
+            it('should return cleanly and log an error when there is an issue reporting to Rollbar', async () => {
+                // This will cause a failure due to the header not being set
+                nock('https://api.rollbar.com').post('/api/1/item/');
+
+                const response = await server.inject('/boom');
+                expect(response.statusCode).toBe(400);
+            });
         });
     });
 });
