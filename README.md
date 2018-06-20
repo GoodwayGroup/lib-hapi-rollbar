@@ -28,6 +28,9 @@ if (process.env.ROLLBAR_TOKEN && ['production', 'staging'].indexOf(process.env.N
             codeVersion: require('../package.json').version // eslint-disable-line global-require
         }
     });
+} else {
+    // passthru helper method to clean up code when rollbar is not configured
+    server.decorate('request', 'sendRollbarMessage', () => {});
 }
 ```
 
@@ -63,7 +66,8 @@ Example call:
 ```js
 request.sendRollbarMessage({
     level: 'warning', // defaults to 'error'
-    message: 'Custom Message'
+    message: 'Custom Message',
+    payload: { custom: { payload: 'data' } }
 })
 ```
 
