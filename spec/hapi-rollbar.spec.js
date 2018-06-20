@@ -33,7 +33,11 @@ describe('lib-hapi-rollbar plugin tests', () => {
             server.route({ method: 'GET',
                 path: '/sendCustomMessage',
                 handler: async (request) => {
-                    await request.sendRollbarMessage({ level: 'info', message: 'test message' });
+                    await request.sendRollbarMessage({
+                        level: 'info',
+                        message: 'test message',
+                        payload: { test: 'payload' }
+                    });
 
                     return true;
                 } });
@@ -90,7 +94,8 @@ describe('lib-hapi-rollbar plugin tests', () => {
             expect(mockRollbarClient.info).toHaveBeenCalled();
             // Check that the `this` is a request object
             const args = mockRollbarClient.info.calls.argsFor(0);
-            expect(args[1].path).toBe('/sendCustomMessage');
+            expect(args[2].path).toBe('/sendCustomMessage');
+            expect(args[1]).toEqual({ test: 'payload' });
         });
 
         it('should add a message helper method to the server [default case]', async () => {
@@ -99,7 +104,7 @@ describe('lib-hapi-rollbar plugin tests', () => {
             expect(mockRollbarClient.info).not.toHaveBeenCalled();
             // Check that the `this` is a request object
             const args = mockRollbarClient.error.calls.argsFor(0);
-            expect(args[1].path).toBe('/sendErrorMessage');
+            expect(args[2].path).toBe('/sendErrorMessage');
         });
 
         it('should add a message helper method to the server [error case]', async () => {

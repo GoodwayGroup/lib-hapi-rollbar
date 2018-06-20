@@ -63,7 +63,8 @@ Example call:
 ```js
 request.sendRollbarMessage({
     level: 'warning', // defaults to 'error'
-    message: 'Custom Message'
+    message: 'Custom Message',
+    payload: { custom: { payload: 'data' } }
 })
 ```
 
