@@ -32,6 +32,14 @@ jobs:
       # Run Tests!
       - run: npm test
 
+      # Upload to CodeCov
+      - run:
+          name: 'Upload to codecov.io'
+          command: bash <(curl -s https://codecov.io/bash) -t f0302c25-bf8b-487c-ba72-7ce727ce4123
+
+      - store_artifacts:
+          path: ./coverage
+
 workflows:
   version: 2
   build_workflow:
