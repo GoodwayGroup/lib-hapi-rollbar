@@ -71,6 +71,10 @@ request.sendRollbarMessage({
 })
 ```
 
+### Send Custom object
+
+Rollbar allows a custom object to be passed through and sent in the payload delivered to a Rollbar occurence (see [here](https://docs.rollbar.com/docs/nodejs#section-caught-exceptions)). In `lib-hapi-rollbar`, we couple this to Boom such that any data passed in as an argument to a Boom error will be delivered through to Rollbar. For example, `Boom.badImplementation('message', data)` will result in the contents of `data` landing as part of the Rollbar occurence report.
+
 ## Running Tests
 
 To run tests, just run the following:
