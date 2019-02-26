@@ -230,7 +230,10 @@ describe('lib-hapi-rollbar plugin tests', () => {
                 port: 8085
             });
 
+            const retBoomPayload = () => Boom.badRequest('bad', { testkey: 'testval' });
+
             server.route({ method: 'GET', path: '/boom', handler: () => Boom.badRequest('bad') });
+            server.route({ method: 'GET', path: '/boomPayload', handler: retBoomPayload });
 
             server.route({ method: 'GET',
                 path: '/realFailure',
@@ -262,6 +265,14 @@ describe('lib-hapi-rollbar plugin tests', () => {
                 nock('https://api.rollbar.com').post('/api/1/item/');
 
                 const response = await server.inject('/boom');
+                expect(response.statusCode).toBe(400);
+            });
+
+            it('should return cleanly and log an error including a custom data object when there is an issue reporting to Rollbar', async () => {
+                // This will cause a failure due to the header not being set
+                nock('https://api.rollbar.com').post('/api/1/item/');
+
+                const response = await server.inject('/boomPayload');
                 expect(response.statusCode).toBe(400);
             });
         });
