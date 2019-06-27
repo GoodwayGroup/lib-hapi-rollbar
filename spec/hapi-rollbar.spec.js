@@ -2,7 +2,7 @@ const assert = require('assert');
 const plugin = require('../lib');
 const nock = require('nock');
 const Hapi = require('hapi');
-const Boom = require('boom');
+const Boom = require('@hapi/boom');
 
 describe('lib-hapi-rollbar plugin tests', () => {
     describe('general use case', () => {
@@ -11,8 +11,8 @@ describe('lib-hapi-rollbar plugin tests', () => {
 
         beforeEach(async () => {
             mockRollbarClient = {
-                error: jasmine.createSpy('error'),
-                info: jasmine.createSpy('info')
+                error: jest.fn(),
+                info: jest.fn()
             };
 
             server = new Hapi.Server({
@@ -93,7 +93,7 @@ describe('lib-hapi-rollbar plugin tests', () => {
             expect(mockRollbarClient.error).not.toHaveBeenCalled();
             expect(mockRollbarClient.info).toHaveBeenCalled();
             // Check that the `this` is a request object
-            const args = mockRollbarClient.info.calls.argsFor(0);
+            const args = mockRollbarClient.info.mock.calls[0];
             expect(args[2].path).toBe('/sendCustomMessage');
             expect(args[1]).toEqual({ test: 'payload' });
         });
@@ -103,7 +103,7 @@ describe('lib-hapi-rollbar plugin tests', () => {
             expect(mockRollbarClient.error).toHaveBeenCalled();
             expect(mockRollbarClient.info).not.toHaveBeenCalled();
             // Check that the `this` is a request object
-            const args = mockRollbarClient.error.calls.argsFor(0);
+            const args = mockRollbarClient.error.mock.calls[0];
             expect(args[2].path).toBe('/sendErrorMessage');
         });
 
@@ -120,7 +120,7 @@ describe('lib-hapi-rollbar plugin tests', () => {
 
         beforeEach(async () => {
             mockRollbarClient = {
-                error: jasmine.createSpy('error')
+                error: jest.fn()
             };
 
             server = new Hapi.Server({
@@ -131,8 +131,8 @@ describe('lib-hapi-rollbar plugin tests', () => {
             return await server.register({ plugin });
         });
 
-        it('should expose dogstatsd client to the hapi server', () => {
-            assert.notEqual(server.dogstatsd, mockRollbarClient);
+        it('should expose rollbar client to the hapi server', () => {
+            assert.notEqual(server.rollbar, mockRollbarClient);
         });
     });
 
@@ -142,7 +142,7 @@ describe('lib-hapi-rollbar plugin tests', () => {
 
         beforeEach(async () => {
             mockRollbarClient = {
-                error: jasmine.createSpy('error')
+                error: jest.fn()
             };
 
             server = new Hapi.Server({
@@ -196,7 +196,7 @@ describe('lib-hapi-rollbar plugin tests', () => {
 
         beforeEach(async () => {
             mockRollbarClient = {
-                error: jasmine.createSpy('error')
+                error: jest.fn()
             };
 
             server = new Hapi.Server({
@@ -207,8 +207,8 @@ describe('lib-hapi-rollbar plugin tests', () => {
             return await server.register({ plugin });
         });
 
-        it('should expose dogstatsd client to the hapi server', () => {
-            assert.notEqual(server.dogstatsd, mockRollbarClient);
+        it('should expose rollbar client to the hapi server', () => {
+            assert.notEqual(server.rollbar, mockRollbarClient);
         });
     });
 

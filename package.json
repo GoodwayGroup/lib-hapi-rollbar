@@ -51,7 +51,7 @@
     "collectCoverageFrom": [
       "lib/index.js"
     ],
-    "setupTestFrameworkScriptFile": "<rootDir>/spec/support/jest.js",
+    "setupFilesAfterEnv": [],
     "setupFiles": [],
     "testMatch": [
       "<rootDir>/spec/**/?(*.)(spec|test).{js,jsx,mjs}"
@@ -76,17 +76,17 @@
     ]
   },
   "devDependencies": {
-    "auto-changelog": "^1.1.0",
-    "boom": "^7.2.0",
+    "@hapi/boom": "^7.4.2",
+    "auto-changelog": "^1.13.0",
     "eslint": "^4.8.0",
     "eslint-config-goodway": "^1.3.0",
     "eslint-plugin-import": "^2.7.0",
-    "hapi": "^17.2.0",
+    "hapi": "^18.1.0",
     "jest": "^24.8.0",
     "nock": "^9.0.22",
     "pre-push": "^0.1.1"
   },
   "dependencies": {
-    "rollbar": "^2.4.0"
+    "rollbar": "^2.7.0"
   }
 }
