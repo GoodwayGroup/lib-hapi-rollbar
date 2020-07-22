@@ -1,8 +1,8 @@
 const assert = require('assert');
-const plugin = require('../lib');
 const nock = require('nock');
-const Hapi = require('hapi');
+const Hapi = require('@hapi/hapi');
 const Boom = require('@hapi/boom');
+const plugin = require('../lib');
 
 describe('lib-hapi-rollbar plugin tests', () => {
     describe('general use case', () => {
@@ -25,12 +25,15 @@ describe('lib-hapi-rollbar plugin tests', () => {
             const retBoomSkip = () => Boom.badRequest('bad');
             const retErr = () => new Error();
 
-            server.route({ method: 'GET', path: '/', handler: get, config: { cors: true } });
+            server.route({
+                method: 'GET', path: '/', handler: get, config: { cors: true }
+            });
             server.route({ method: 'GET', path: '/throwError', handler: retErr });
             server.route({ method: 'GET', path: '/boom', handler: retBoom });
             server.route({ method: 'GET', path: '/boomSkip', handler: retBoomSkip });
 
-            server.route({ method: 'GET',
+            server.route({
+                method: 'GET',
                 path: '/sendCustomMessage',
                 handler: async (request) => {
                     await request.sendRollbarMessage({
@@ -40,25 +43,30 @@ describe('lib-hapi-rollbar plugin tests', () => {
                     });
 
                     return true;
-                } });
+                }
+            });
 
-            server.route({ method: 'GET',
+            server.route({
+                method: 'GET',
                 path: '/sendErrorMessage',
                 handler: async (request) => {
                     await request.sendRollbarMessage({ message: 'test error message' });
 
                     return true;
-                } });
+                }
+            });
 
-            server.route({ method: 'GET',
+            server.route({
+                method: 'GET',
                 path: '/sendInvalidMessage',
                 handler: async (request) => {
                     await request.sendRollbarMessage({ level: 'bad', message: 'test bad message' });
 
                     return true;
-                } });
+                }
+            });
 
-            return await server.register({
+            return server.register({
                 plugin,
                 options: { rollbarClient: mockRollbarClient }
             });
@@ -128,7 +136,7 @@ describe('lib-hapi-rollbar plugin tests', () => {
                 port: 8085
             });
 
-            return await server.register({ plugin });
+            return server.register({ plugin });
         });
 
         it('should expose rollbar client to the hapi server', () => {
@@ -155,12 +163,14 @@ describe('lib-hapi-rollbar plugin tests', () => {
             const retBoomSkip = () => Boom.badRequest('bad');
             const retErr = () => new Error();
 
-            server.route({ method: 'GET', path: '/', handler: get, config: { cors: true } });
+            server.route({
+                method: 'GET', path: '/', handler: get, config: { cors: true }
+            });
             server.route({ method: 'GET', path: '/throwError', handler: retErr });
             server.route({ method: 'GET', path: '/boom', handler: retBoom });
             server.route({ method: 'GET', path: '/boomSkip', handler: retBoomSkip });
 
-            return await server.register({
+            return server.register({
                 plugin,
                 options: {
                     rollbarClient: mockRollbarClient,
@@ -204,7 +214,7 @@ describe('lib-hapi-rollbar plugin tests', () => {
                 port: 8085
             });
 
-            return await server.register({ plugin });
+            return server.register({ plugin });
         });
 
         it('should expose rollbar client to the hapi server', () => {
@@ -223,7 +233,6 @@ describe('lib-hapi-rollbar plugin tests', () => {
             nock.enableNetConnect();
         });
 
-
         beforeEach(async () => {
             server = new Hapi.Server({
                 host: 'localhost',
@@ -235,11 +244,13 @@ describe('lib-hapi-rollbar plugin tests', () => {
             server.route({ method: 'GET', path: '/boom', handler: () => Boom.badRequest('bad') });
             server.route({ method: 'GET', path: '/boomPayload', handler: retBoomPayload });
 
-            server.route({ method: 'GET',
+            server.route({
+                method: 'GET',
                 path: '/realFailure',
-                handler: async request => await request.sendRollbarMessage({ message: 'gonna get nocked' }) });
+                handler: async (request) => request.sendRollbarMessage({ message: 'gonna get nocked' })
+            });
 
-            return await server.register({
+            return server.register({
                 plugin,
                 options: {}
             });
