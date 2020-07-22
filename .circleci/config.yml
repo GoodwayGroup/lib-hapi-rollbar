@@ -1,10 +1,12 @@
-version: 2
+version: 2.1
+orbs:
+  coveralls: coveralls/coveralls@1.0.6
 
 defaults: &defaults
   working_directory: ~/repo
   docker:
     -
-      image: circleci/node:8
+      image: circleci/node:12
 
 jobs:
   test:
@@ -16,7 +18,7 @@ jobs:
       -
         restore_cache:
           keys:
-            - v0-dependencies-{{ checksum "yarn.lock" }}
+            - v1-dependencies-{{ checksum "yarn.lock" }}
 
       -
         run:
@@ -27,15 +29,12 @@ jobs:
         save_cache:
           paths:
             - node_modules
-          key: v0-dependencies-{{ checksum "yarn.lock" }}
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
 
       # Run Tests!
       - run: npm test
 
-      # Upload to CodeCov
-      - run:
-          name: 'Upload to codecov.io'
-          command: bash <(curl -s https://codecov.io/bash) -t f0302c25-bf8b-487c-ba72-7ce727ce4123
+      - coveralls/upload
 
       - store_artifacts:
           path: ./coverage
