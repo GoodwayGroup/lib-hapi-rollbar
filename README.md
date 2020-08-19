@@ -9,7 +9,7 @@
 This plugin will push exceptions to Rollbar.
 
 ```
-$ yarn add @goodwaygroup/lib-hapi-rollbar
+$ npm install -S @goodwaygroup/lib-hapi-rollbar
 ```
 
 In your `index.js` for the Hapi server, register the plugin:
@@ -80,7 +80,7 @@ Rollbar allows a custom object to be passed through and sent in the payload deli
 To run tests, just run the following:
 
 ```
-yarn test
+npm test
 ```
 
 All commits are tested on [CircleCI](https://circleci.com/gh/GoodwayGroup/workflows/lib-hapi-rollbar)
@@ -90,13 +90,13 @@ All commits are tested on [CircleCI](https://circleci.com/gh/GoodwayGroup/workfl
 To run `eslint`:
 
 ```
-yarn lint
+npm run lint
 ```
 
 To auto-resolve:
 
 ```
-yarn lint:fix
+npm run lint:fix
 ```
 
 ## Contributing
@@ -110,7 +110,7 @@ We use milestones and `npm` version to bump versions. We also employ [auto-chang
 To initiate a version change:
 
 ```
-yarn version
+npm version major|minor|patch
 ```
 
 ## Authors
