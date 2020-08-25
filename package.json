@@ -76,17 +76,17 @@
     ]
   },
   "devDependencies": {
-    "@hapi/boom": "^9.1.0",
-    "@hapi/hapi": "^20.0.0",
-    "auto-changelog": "^2.2.0",
-    "eslint": "^7.7.0",
-    "eslint-config-goodway": "^2.1.1",
-    "eslint-plugin-import": "^2.22.0",
-    "jest": "^26.4.0",
-    "nock": "^13.0.4",
-    "pre-push": "^0.1.1"
+    "@hapi/boom": "9.1.0",
+    "@hapi/hapi": "20.0.0",
+    "auto-changelog": "2.2.0",
+    "eslint": "7.7.0",
+    "eslint-config-goodway": "2.1.1",
+    "eslint-plugin-import": "2.22.0",
+    "jest": "26.4.0",
+    "nock": "13.0.4",
+    "pre-push": "0.1.1"
   },
   "dependencies": {
-    "rollbar": "^2.19.2"
+    "rollbar": "2.19.2"
   }
 }
