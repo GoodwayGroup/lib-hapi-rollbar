@@ -10,7 +10,7 @@
     "test:results": "open ./coverage/lcov-report/index.html",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "version": "auto-changelog -p -l false --template keepachangelog && git add CHANGELOG.md"
+    "version": "git-chglog -o CHANGELOG.md --next-tag v$(grep '\\\"version\\\":' package.json | grep -v git-chglog | awk -F '\\\"' '{print $4}') && git add CHANGELOG.md"
   },
   "repository": {
     "type": "git",
@@ -78,7 +78,6 @@
   "devDependencies": {
     "@hapi/boom": "9.1.0",
     "@hapi/hapi": "20.0.0",
-    "auto-changelog": "2.2.0",
     "eslint": "7.7.0",
     "eslint-config-goodway": "2.1.1",
     "eslint-plugin-import": "2.22.0",
