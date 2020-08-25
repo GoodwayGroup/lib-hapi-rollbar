@@ -1,14 +1,19 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+
+<a name="v0.5.4"></a>
+## [v0.5.4] - 2020-08-25
 ### Bug Fixes
 - **deps:** update dependency rollbar to v2.19.3 ([#31](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/31))
 
 ### Chore
 - update README
 - remove dependabot
+- **changelog:** port to use of git-chglog
 - **deps:** update dependency jest to v26.4.2 ([#30](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/30))
 - **deps:** pin dependencies ([#29](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/29))
+- **husky:** deprecate pre-push in favor of husky
 - **renovate:** add config ([#27](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/27))
 
 ### Set
@@ -151,7 +156,8 @@ v0.2.0
 - rollout of the plugin
 
 
-[Unreleased]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.3...HEAD
+[Unreleased]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.4...HEAD
+[v0.5.4]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.3...v0.5.4
 [v0.5.3]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.2...v0.5.3
 [v0.5.2]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.1...v0.5.2
 [v0.5.1]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/0.5.0...v0.5.1
