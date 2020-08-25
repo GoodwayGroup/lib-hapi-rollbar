@@ -87,6 +87,6 @@
     "pre-push": "0.1.1"
   },
   "dependencies": {
-    "rollbar": "2.19.2"
+    "rollbar": "2.19.3"
   }
 }
