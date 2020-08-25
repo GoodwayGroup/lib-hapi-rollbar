@@ -1,6 +1,9 @@
 # @goodwaygroup/lib-hapi-rollbar
 
-[![Coverage Status](https://coveralls.io/repos/github/GoodwayGroup/lib-hapi-rollbar/badge.svg?branch=master)](https://coveralls.io/github/GoodwayGroup/lib-hapi-rollbar?branch=master) [![CircleCI](https://circleci.com/gh/GoodwayGroup/lib-hapi-rollbar.svg?style=svg)](https://circleci.com/gh/GoodwayGroup/lib-hapi-rollbar)
+[![CircleCI](https://circleci.com/gh/GoodwayGroup/lib-hapi-rollbar.svg?style=svg)](https://circleci.com/gh/GoodwayGroup/lib-hapi-rollbar)
+[![Coverage Status](https://coveralls.io/repos/github/GoodwayGroup/lib-hapi-rollbar/badge.svg?branch=master)](https://coveralls.io/github/GoodwayGroup/lib-hapi-rollbar?branch=master)
+[![npm downloads](https://img.shields.io/npm/dm/@goodwaygroup/lib-hapi-rollbar.svg?style=flat-square)](http://npm-stat.com/charts.html?package=@goodwaygroup/lib-hapi-rollbar)
+[![install size](https://packagephobia.com/badge?p=@goodwaygroup/lib-hapi-rollbar)](https://packagephobia.com/result?p=@goodwaygroup/lib-hapi-rollbar)
 
 > Please do not run this plugin within tests in your application
 
