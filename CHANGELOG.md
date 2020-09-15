@@ -2,6 +2,17 @@
 ## [Unreleased]
 
 
+<a name="v0.5.5"></a>
+## [v0.5.5] - 2020-09-14
+### Chore
+- **deps:** update dependency eslint to v7.9.0 ([#34](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/34))
+- **deps:** update dependency husky to v4.3.0 ([#33](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/33))
+- **deps:** update dependency eslint to v7.8.1 ([#32](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/32))
+
+### Set
+- theme jekyll-theme-cayman
+
+
 <a name="v0.5.4"></a>
 ## [v0.5.4] - 2020-08-25
 ### Bug Fixes
@@ -156,7 +167,8 @@ v0.2.0
 - rollout of the plugin
 
 
-[Unreleased]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.4...HEAD
+[Unreleased]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.5...HEAD
+[v0.5.5]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.4...v0.5.5
 [v0.5.4]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.3...v0.5.4
 [v0.5.3]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.2...v0.5.3
 [v0.5.2]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.1...v0.5.2
