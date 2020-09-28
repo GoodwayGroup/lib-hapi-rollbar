@@ -80,7 +80,7 @@
     "@hapi/hapi": "20.0.0",
     "eslint": "7.9.0",
     "eslint-config-goodway": "2.1.1",
-    "eslint-plugin-import": "2.22.0",
+    "eslint-plugin-import": "2.22.1",
     "husky": "4.3.0",
     "jest": "26.4.2",
     "nock": "13.0.4"
