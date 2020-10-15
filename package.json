@@ -86,6 +86,6 @@
     "nock": "13.0.4"
   },
   "dependencies": {
-    "rollbar": "2.19.3"
+    "rollbar": "2.19.4"
   }
 }
