@@ -76,8 +76,8 @@
     ]
   },
   "devDependencies": {
-    "@hapi/boom": "9.1.0",
-    "@hapi/hapi": "20.0.1",
+    "@hapi/boom": "9.1.1",
+    "@hapi/hapi": "20.0.3",
     "eslint": "7.12.1",
     "eslint-config-goodway": "3.0.0",
     "eslint-plugin-import": "2.22.1",
