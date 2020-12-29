@@ -2,6 +2,19 @@
 ## [Unreleased]
 
 
+<a name="v0.5.7"></a>
+## [v0.5.7] - 2020-12-29
+### Chore
+- **deps:** update dependency jest to v26.6.3 ([#45](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/45))
+- **deps:** update dependency eslint to v7.16.0 ([#46](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/46))
+- **deps:** update dependency husky to v4.3.6 ([#50](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/50))
+- **deps:** update dependency nock to v13.0.5 ([#48](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/48))
+- **deps:** update node.js to v12.20.0 ([#49](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/49))
+- **deps:** update hapijs monorepo ([#47](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/47))
+- **deps:** update dependency eslint to v7.12.1 ([#44](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/44))
+- **deps:** update dependency jest to v26.6.1 ([#43](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/43))
+
+
 <a name="v0.5.6"></a>
 ## [v0.5.6] - 2020-10-20
 ### Bug Fixes
@@ -182,7 +195,8 @@ v0.2.0
 - rollout of the plugin
 
 
-[Unreleased]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.6...HEAD
+[Unreleased]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.7...HEAD
+[v0.5.7]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.6...v0.5.7
 [v0.5.6]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.5...v0.5.6
 [v0.5.5]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.4...v0.5.5
 [v0.5.4]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.3...v0.5.4
