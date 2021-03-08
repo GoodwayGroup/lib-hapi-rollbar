@@ -2,6 +2,21 @@
 ## [Unreleased]
 
 
+<a name="v0.5.8"></a>
+## [v0.5.8] - 2021-03-08
+### Chore
+- **deps:** update dependency nock to v13.0.11 ([#66](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/66))
+- **deps:** update dependency husky to v4.3.7 ([#53](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/53))
+- **deps:** update hapijs monorepo ([#65](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/65))
+- **deps:** update dependency eslint to v7.17.0 ([#51](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/51))
+- **deps:** update dependency nock to v13.0.6 ([#56](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/56))
+- **deps:** update dependency husky to v4.3.8 ([#55](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/55))
+- **deps:** update dependency eslint to v7.18.0 ([#54](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/54))
+- **deps:** update node.js to v12.20.1 ([#52](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/52))
+- **github action:** add Publish action
+- **renovate:** add extension for group:allNonMajor
+
+
 <a name="v0.5.7"></a>
 ## [v0.5.7] - 2020-12-29
 ### Chore
@@ -195,7 +210,8 @@ v0.2.0
 - rollout of the plugin
 
 
-[Unreleased]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.7...HEAD
+[Unreleased]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.8...HEAD
+[v0.5.8]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.7...v0.5.8
 [v0.5.7]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.6...v0.5.7
 [v0.5.6]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.5...v0.5.6
 [v0.5.5]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.4...v0.5.5
