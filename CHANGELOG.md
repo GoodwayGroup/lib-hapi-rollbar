@@ -2,6 +2,19 @@
 ## [Unreleased]
 
 
+<a name="v0.6.0"></a>
+## [v0.6.0] - 2021-03-18
+### Bug Fixes
+- **deps:** update dependency rollbar to v2.21.1 ([#68](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/68))
+
+### Chore
+- **cd:** added push button deployments
+- **deps:** update dependency husky to v5
+- **deps:** update node.js to v14
+- **deps:** update all non-major dependencies ([#67](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/67))
+- **npm:** update commit message template on version
+
+
 <a name="v0.5.8"></a>
 ## [v0.5.8] - 2021-03-08
 ### Chore
@@ -210,7 +223,8 @@ v0.2.0
 - rollout of the plugin
 
 
-[Unreleased]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.8...HEAD
+[Unreleased]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.6.0...HEAD
+[v0.6.0]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.8...v0.6.0
 [v0.5.8]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.7...v0.5.8
 [v0.5.7]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.6...v0.5.7
 [v0.5.6]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.5...v0.5.6
