@@ -252,7 +252,9 @@ describe('lib-hapi-rollbar plugin tests', () => {
 
             return server.register({
                 plugin,
-                options: {}
+                options: {
+                    accessToken: 'MOCK_ACCESS_TOKEN' // required at least as of Rollbar v2.26.2
+                }
             });
         });
 
