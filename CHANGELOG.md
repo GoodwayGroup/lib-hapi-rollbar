@@ -2,6 +2,16 @@
 ## [Unreleased]
 
 
+<a name="v0.6.3"></a>
+## [v0.6.3] - 2024-01-08
+### Chore
+- Upgrades dependencies to remove Critical and High vulnerabilities ([#104](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/104))
+
+### Chore
+- **deps:** update all non-major dependencies ([#78](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/78))
+- **deps:** update dependency jest to v27 ([#79](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/79))
+
+
 <a name="v0.6.2"></a>
 ## [v0.6.2] - 2021-05-13
 ### Bug Fixes
@@ -16,6 +26,7 @@
 - **deps:** update dependency eslint to v7.23.0 ([#71](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/71))
 - **deps:** update dependency husky to v5.2.0 ([#70](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/70))
 - **deps:** update all non-major dependencies ([#69](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/69))
+- **release:** v0.6.2
 
 
 <a name="v0.6.1"></a>
@@ -46,13 +57,13 @@
 ## [v0.5.8] - 2021-03-08
 ### Chore
 - **deps:** update dependency nock to v13.0.11 ([#66](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/66))
-- **deps:** update dependency husky to v4.3.7 ([#53](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/53))
 - **deps:** update hapijs monorepo ([#65](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/65))
-- **deps:** update dependency eslint to v7.17.0 ([#51](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/51))
 - **deps:** update dependency nock to v13.0.6 ([#56](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/56))
 - **deps:** update dependency husky to v4.3.8 ([#55](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/55))
 - **deps:** update dependency eslint to v7.18.0 ([#54](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/54))
+- **deps:** update dependency husky to v4.3.7 ([#53](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/53))
 - **deps:** update node.js to v12.20.1 ([#52](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/52))
+- **deps:** update dependency eslint to v7.17.0 ([#51](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/51))
 - **github action:** add Publish action
 - **renovate:** add extension for group:allNonMajor
 
@@ -250,7 +261,8 @@ v0.2.0
 - rollout of the plugin
 
 
-[Unreleased]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.6.2...HEAD
+[Unreleased]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.6.3...HEAD
+[v0.6.3]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.6.2...v0.6.3
 [v0.6.2]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.6.1...v0.6.2
 [v0.6.1]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.6.0...v0.6.1
 [v0.6.0]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.8...v0.6.0
