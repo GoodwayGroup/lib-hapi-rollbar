@@ -2,20 +2,31 @@
 ## [Unreleased]
 
 
+<a name="v0.6.3"></a>
+## [v0.6.3] - 2024-01-08
+### Chore
+- Upgrades dependencies to remove Critical and High vulnerabilities ([#104](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/104))
+
+### Chore
+- **deps:** update all non-major dependencies ([#78](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/78))
+- **deps:** update dependency jest to v27 ([#79](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/79))
+
+
 <a name="v0.6.2"></a>
 ## [v0.6.2] - 2021-05-13
 ### Bug Fixes
 - remove force push
 
 ### Chore
+- **deps:** update dependency eslint to v7.23.0 ([#71](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/71))
 - **deps:** update all non-major dependencies ([#74](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/74))
 - **deps:** update dependency hosted-git-info to 2.8.9 [security] ([#77](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/77))
 - **deps:** update dependency lodash to 4.17.21 [security] ([#76](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/76))
 - **deps:** update all non-major dependencies ([#73](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/73))
 - **deps:** update dependency husky to v6 ([#72](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/72))
-- **deps:** update dependency eslint to v7.23.0 ([#71](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/71))
 - **deps:** update dependency husky to v5.2.0 ([#70](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/70))
 - **deps:** update all non-major dependencies ([#69](https://github.com/GoodwayGroup/lib-hapi-rollbar/issues/69))
+- **release:** v0.6.2
 
 
 <a name="v0.6.1"></a>
@@ -250,7 +261,8 @@ v0.2.0
 - rollout of the plugin
 
 
-[Unreleased]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.6.2...HEAD
+[Unreleased]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.6.3...HEAD
+[v0.6.3]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.6.2...v0.6.3
 [v0.6.2]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.6.1...v0.6.2
 [v0.6.1]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.6.0...v0.6.1
 [v0.6.0]: https://github.com/GoodwayGroup/lib-hapi-rollbar/compare/v0.5.8...v0.6.0
