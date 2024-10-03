@@ -73,16 +73,16 @@
     ]
   },
   "devDependencies": {
-    "@hapi/boom": "9.1.2",
-    "@hapi/hapi": "20.1.3",
-    "eslint": "7.27.0",
+    "@hapi/boom": "9.1.4",
+    "@hapi/hapi": "20.3.0",
+    "eslint": "7.32.0",
     "eslint-config-goodway": "^3.3.0",
-    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-import": "^2.31.0",
     "husky": "6.0.0",
-    "jest": "27.0.3",
-    "nock": "13.1.0"
+    "jest": "27.5.1",
+    "nock": "13.5.5"
   },
   "dependencies": {
-    "rollbar": "2.26.2"
+    "rollbar": "2.26.4"
   }
 }
